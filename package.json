@@ -1,0 +1,26 @@
+{
+  "name": "react-router-animate",
+  "version": "0.1.01",
+  "description": "React's higher-order components, which generate animation while routing jumps, using the animate.css",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react-route-animate",
+    "react-component-animate",
+    "react",
+    "route",
+    "animate"
+  ],
+  "author": "wertertom",
+  "license": "ISC",
+  "peerDependencies": {
+    "react": ">16.0.0",
+    "react-transition-group": ">2.0.0"
+  },
+  "Dependencies": {
+    "react": ">16.0.0",
+    "react-transition-group": ">2.0.0"
+  }
+}
