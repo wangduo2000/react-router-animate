@@ -1,7 +1,7 @@
 {
   "name": "react-router-animate",
-  "version": "0.1.01",
-  "description": "React's higher-order components, which generate animation while routing jumps, using the animate.css",
+  "version": "0.1.12",
+  "description": "A higher-order components for React, which generate animation while routing jumps, using the animate.css",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,17 +9,18 @@
   "keywords": [
     "react-route-animate",
     "react-component-animate",
-    "react",
-    "route",
+    "react-router",
     "animate"
   ],
+  "bugs": "https://github.com/wangduo2000/react-router-animate",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:wangduo2000/react-router-animate.git"
+  },
+  "homepage": "https://www.cnblogs.com/wertantan/",
   "author": "wertertom",
   "license": "ISC",
   "peerDependencies": {
-    "react": ">16.0.0",
-    "react-transition-group": ">2.0.0"
-  },
-  "Dependencies": {
     "react": ">16.0.0",
     "react-transition-group": ">2.0.0"
   }

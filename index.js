@@ -1,7 +1,7 @@
 import React from 'react';
 import {CSSTransition} from 'react-transition-group';
 
-export default ( Comp, animate, where, time=1000) => {
+export default ( Comp, animate, where, time) => {
   return class extends React.Component {
     constructor (props) {
       super(props)
@@ -77,7 +77,7 @@ export default ( Comp, animate, where, time=1000) => {
             exit: 'animated',
             exitActive: num > this.num ? this.animateOut : this.animateOut2,
           }, 
-          timeout: typeof(time) === 'number' ? time : 1000, 
+          timeout: !!time ? (typeof(time) === 'number' ? time : 1000) : 1000, 
           mountOnEnter: true, 
           unmountOnExit: true, 
           toAdd:  this.num = !!this.props.location.state ? this.props.location.state.num : 0
