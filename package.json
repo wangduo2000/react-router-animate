@@ -17,7 +17,7 @@
     "type": "git",
     "url": "git@github.com:wangduo2000/react-router-animate.git"
   },
-  "homepage": "https://www.cnblogs.com/wertantan/",
+  "homepage": "https://github.com/wangduo2000/react-router-animate",
   "author": "wertertom",
   "license": "ISC",
   "peerDependencies": {

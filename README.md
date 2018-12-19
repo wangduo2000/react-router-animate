@@ -1,14 +1,14 @@
 # react-router-animate
 A higher-order component for animating when react-router jumping
 
-## Install
+## <font color=red>Install</font>
 
 ```bash
 npm install react-router-animate --save
 yarn add react-router-animate
 ```
 
-You can install this higher-order component with `npm/yarn`, you need animate.css, so you must import animate.css in you index.js. Download [Animate.css](https://raw.githubusercontent.com/daneden/animate.css/master/animate.css) and place it in you src. You App should depend on react and react-transition-group.
+You can install this higher-order component with 'npm/yarn', you need <font color=LightGreen>animate.css</font>, so you must import <font color=LightGreen>animate.css</font> in you index.js. Download [Animate.css](https://raw.githubusercontent.com/daneden/animate.css/master/animate.css) and place it in you  src . You App should depend on react and react-transition-group.
 
 
 ```bash
@@ -19,7 +19,7 @@ import 'styles/animate.css'
 import wrapperAnimate from 'react-router-animate'; // import hegher-order component called wrapperAnimate
 ```
 
-## Usage 
+## <font color=red>Usage</font> 
 This higher-order component has four parameters, the component is the first parameter, the second parameter is the animated type, the third parameter is the direction of animation, the fourth parameter is the times of animations, default 1000ms. 
 ```bash
 export default wrapperAnimate(HomePage,'fade','Left')
@@ -30,26 +30,26 @@ Second parameter:
 'lightSpeedIn'、'lightSpeedOut'、'rotate'
 'slide'、'zoom'、'hinge'
 'jackInTheBox'、'rollIn'、'rollOut'
-default: 'fade'
+<font color=Chartreuse>default: 'fade'</font>
 
 
 Third parameter:
 'Left'、'Right'
 'Down'、'Up'
 'X'、'Y'
-default: 'Left'
+<font color=Chartreuse>default: 'Left'</font>
 First character upper case
 You can use Array as the third parameter when you use 'rotate' as the second parameter to determine the direction of the animation. The first value of the Array is the direction of entry, the second value of the Array is the direction of leave.
 
 
 Fourth parameter:
 Number:  ms
-default: 1000
+<font color=Chartreuse>default: 1000</font>
 ```
 [animate type](https://daneden.github.io/animate.css/)
 
 
-### Example
+### <font color=red>Example</font>
 ```javascript
 // index.js
 import React, {Component} from 'react';
@@ -90,7 +90,7 @@ class App extends Component {
         <Route path='/address' children={ props => <AddressPage {...props} />} />
       </div>
     );
-}
+  }
 }
 
 const Appp = withRouter(App);
@@ -114,21 +114,21 @@ class HomePage extends Component {
         HomePage
       </div>
     )
-}
+  }
 }
 export default wrapperAnimate(HomePage)
 // like export default wrapperAnimate(HomePage,'fade','Left',1000)
 
 // Addresspage.js is the same code as HomePage. Js, then you can run it
 ```
-You should use this.history.push with num attribute of state parameter to change router, you will don't have better animation with num attribute of state parameter.
+You should use  <font color=Cyan>this.history.push</font>  with num attribute of state parameter to change router, you will don't have better animation without num attribute of state parameter.
 
 
-## FAQ
-*   **Q1: White screen？**
-    You need to add the style position: position to each component that goes in and out of the route jump.
+## <font color=red>FAQ</font>
+*   **<font color=red>Q1: White screen?</font>**
+    You need to add the style  <font color=Cyan>position: absolute</font>  to each component that goes in and out of the route jump.
     
-    **Q2: Animation acceleration at the end？**
-    You parameter and the time in animate.css must be the same, you should change time in animate.css when you add the fourth parameter.
+*   **<font color=red>Q2: Animation acceleration at the end?</font>**
+    You parameter and the time in <font color=LightGreen>animate.css</font> must be the same, you should change time in <font color=LightGreen>
+animate.css</font> when you add the fourth parameter.
 ---
-
