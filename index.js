@@ -6,18 +6,15 @@ export default ( Comp, animate, where, time) => {
     constructor (props) {
       super(props)
       this.num = 0;
-      this.stateNum = this.props.location.state ? this.props.location.state.num : 0
+      this.switchTo = this.switchTo.bind(this)
       let animateState = animate ? animate : 'fade'
-      ,animateDirection = ['Left','Right']
+      ,animateDirection = ['Right','Left']
       switch(animateState){
         case 'flip':
           animateDirection = ['X','Y'];
           break;
         case 'rotate':
-          animateDirection = ['DownLeft','UpLeft'];
-          break;
-        case 'zoom':
-          animateDirection = ['Right','Left'];
+          animateDirection = ['DownRight','UpRight'];
           break;
         case 'hinge':
         case 'jackInTheBox':
@@ -49,14 +46,10 @@ export default ( Comp, animate, where, time) => {
       };
       this.animateIn = animateState + (animateDirection === '' ? '' : 'In' + animateDirection[0])
       this.animateIn2 = animateState + (animateDirection === '' ? '' : 'In' + animateDirection[1])
-      this.animateOut = animateState + (animateDirection === '' ? '' : 'Out' + animateDirection[0])
-      this.animateOut2 = animateState + (animateDirection === '' ? '' : 'Out' + animateDirection[1]);
-      this.replaceStr(animateState,'animateOut2')
+      this.animateOut = animateState + (animateDirection === '' ? '' : animateDirection[0] === 'Right' ? 'Out' + animateDirection[1] : 'Out' + animateDirection[0])
+      this.animateOut2 = animateState + (animateDirection === '' ? '' : animateDirection[0] === 'Right' ? 'Out' + animateDirection[0] : 'Out' + animateDirection[1]);
       this.switchTo(this.animateIn,'animateIn','animateOut')
       this.switchTo(this.animateIn2,'animateIn2','animateOut2')
-    }
-    replaceStr(animateState,animateOut,){
-      animateState === 'rotate' ? this[animateOut] = this[animateOut].replace(/Up/,'Down') : this[animateOut] = this[animateOut]+''
     }
     switchTo(str,animateIn,animateOut){
       switch(str){
@@ -74,19 +67,20 @@ export default ( Comp, animate, where, time) => {
       }
     }
     render () {
+      let stateNum = this.props.location.state ? this.props.location.state.num : 0
       return (
         React.createElement(CSSTransition, {
           in:  !!this.props.match, 
           classNames: {
             enter: 'animated',
-            enterActive: this.stateNum > this.num ? this.animateIn : this.animateIn2,
+            enterActive: stateNum > this.num ? this.animateIn : this.animateIn2,
             exit: 'animated',
-            exitActive: this.stateNum > this.num ? this.animateOut : this.animateOut2,
+            exitActive: stateNum > this.num ? this.animateOut : this.animateOut2,
           }, 
           timeout: !!time ? (typeof(time) === 'number' ? time : 1000) : 1000, 
           mountOnEnter: true, 
           unmountOnExit: true, 
-          toAdd:  this.num = !!this.props.location.state ? this.props.location.state.num : 0
+          toAdd:  this.num = stateNum
         }, 
           React.createElement(Comp, {...this.props})
         )
