@@ -6,33 +6,18 @@ export default ( Comp, animate, where, time) => {
     constructor (props) {
       super(props)
       this.num = 0;
-      this.switchTo = this.switchTo.bind(this)
-    }
-    switchTo(str,animateIn,animateOut){
-      switch(str){
-        case 'rollIn':
-          this[animateOut] = 'rollOut';
-          break;
-        case 'lightSpeedIn':
-          this[animateOut] = 'lightSpeedOut';
-          break;
-        case 'hinge':
-          this[animateIn] = 'fadeInLeft'
-          this[animateOut] = 'hinge';
-          break;
-        default:
-      }
-    }
-    render () {
-      let num = this.props.location.state ? this.props.location.state.num : 0
-        ,animateState = animate ? animate : 'fade'
-        ,animateDirection = ['Right','Left']
+      this.stateNum = this.props.location.state ? this.props.location.state.num : 0
+      let animateState = animate ? animate : 'fade'
+      ,animateDirection = ['Left','Right']
       switch(animateState){
         case 'flip':
           animateDirection = ['X','Y'];
           break;
         case 'rotate':
           animateDirection = ['DownLeft','UpLeft'];
+          break;
+        case 'zoom':
+          animateDirection = ['Right','Left'];
           break;
         case 'hinge':
         case 'jackInTheBox':
@@ -64,18 +49,39 @@ export default ( Comp, animate, where, time) => {
       };
       this.animateIn = animateState + (animateDirection === '' ? '' : 'In' + animateDirection[0])
       this.animateIn2 = animateState + (animateDirection === '' ? '' : 'In' + animateDirection[1])
-      this.animateOut = animateState + (animateDirection === '' ? '' : 'Out' + animateDirection[1])
-      this.animateOut2 = animateState + (animateDirection === '' ? '' : 'Out' + animateDirection[0]);
+      this.animateOut = animateState + (animateDirection === '' ? '' : 'Out' + animateDirection[0])
+      this.animateOut2 = animateState + (animateDirection === '' ? '' : 'Out' + animateDirection[1]);
+      this.replaceStr(animateState,'animateOut2')
       this.switchTo(this.animateIn,'animateIn','animateOut')
       this.switchTo(this.animateIn2,'animateIn2','animateOut2')
+    }
+    replaceStr(animateState,animateOut,){
+      animateState === 'rotate' ? this[animateOut] = this[animateOut].replace(/Up/,'Down') : this[animateOut] = this[animateOut]+''
+    }
+    switchTo(str,animateIn,animateOut){
+      switch(str){
+        case 'rollIn':
+          this[animateOut] = 'rollOut';
+          break;
+        case 'lightSpeedIn':
+          this[animateOut] = 'lightSpeedOut';
+          break;
+        case 'hinge':
+          this[animateIn] = 'fadeInLeft'
+          this[animateOut] = 'hinge';
+          break;
+        default:
+      }
+    }
+    render () {
       return (
         React.createElement(CSSTransition, {
           in:  !!this.props.match, 
           classNames: {
             enter: 'animated',
-            enterActive: num > this.num ? this.animateIn : this.animateIn2,
+            enterActive: this.stateNum > this.num ? this.animateIn : this.animateIn2,
             exit: 'animated',
-            exitActive: num > this.num ? this.animateOut : this.animateOut2,
+            exitActive: this.stateNum > this.num ? this.animateOut : this.animateOut2,
           }, 
           timeout: !!time ? (typeof(time) === 'number' ? time : 1000) : 1000, 
           mountOnEnter: true, 
